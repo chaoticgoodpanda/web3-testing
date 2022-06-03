@@ -4,9 +4,8 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require("web3");
 const compiledFactory = require("./build/CampaignFactory.json");
-const mnemonicPhrase =
-  "e6265c254a80fb9106a082f69bbe26a6a3ec836fd8f0bcbf6be07d98120a4e39";
-const network = "https://rinkeby.infura.io/v3/fe7747126d174405b3480d489f1dc0fd";
+const mnemonicPhrase = process.env.ACCOUNT_MNEMONIC;
+const network = process.env.RINKEBY_ENDPOINT;
 
 const provider = new HDWalletProvider(
   "e6265c254a80fb9106a082f69bbe26a6a3ec836fd8f0bcbf6be07d98120a4e39",

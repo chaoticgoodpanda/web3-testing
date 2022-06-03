@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev":"next dev"
+    "dev": "next dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@remix-project/remixd": "^0.6.1",
     "@truffle/hdwallet-provider": "^1.7.0",
     "fs-extra": "^10.1.0",
     "ganache-cli": "^6.12.2",
