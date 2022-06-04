@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import factory from "../ethereum/factory";
+import { Card } from "semantic-ui-react";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -8,8 +9,22 @@ class CampaignIndex extends Component {
     return { campaigns };
   }
 
+  renderCampaigns() {
+    // pass function into map, that function gets called one time for every element in the array
+    const items = this.props.campaigns.map((address) => {
+      return {
+        header: address,
+        description: <a>View Campaign</a>,
+        // fluid property causes each card to stretch to the entire width of the container
+        fluid: true,
+      };
+    });
+
+    return <Card.Group items={items} />;
+  }
+
   render() {
-    return <div>{this.props.campaigns[0]}</div>;
+    return <div>{this.renderCampaigns()}</div>;
   }
 }
 
