@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import factory from "../ethereum/factory";
 import { Button, Card } from "semantic-ui-react";
 import Layout from "../components/Layout";
+import Link from "next/link";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -15,7 +16,11 @@ class CampaignIndex extends Component {
     const items = this.props.campaigns.map((address) => {
       return {
         header: address,
-        description: <a>View Campaign</a>,
+        description: (
+          <Link href={`/campaigns/${address}`}>
+            <a>View Campaign</a>
+          </Link>
+        ),
         // fluid property causes each card to stretch to the entire width of the container
         fluid: true,
       };
