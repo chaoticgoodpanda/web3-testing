@@ -82,33 +82,3 @@ class CampaignShow extends Component {
 }
 
 export default CampaignShow;
-
-// export default function CampaignPage() {
-//   const router = useRouter();
-//   const { id } = router.query;
-//   const campaign = Campaign(id);
-//   const summary = campaign.methods.getSummary().call();
-//   // properties of summary object
-//   const minimumContribution = summary[0];
-//   const balance = summary[1];
-//   const requestsCount = summary[2];
-//   const approversCount = summary[3];
-//   const manager = summary[4];
-//
-//   const items = [
-//     {
-//       header: manager,
-//       meta: "Address of Manager",
-//       description:
-//         "The manager created this campaign and can create requests for money.",
-//       style: { overflowWrap: "break-word" },
-//     },
-//   ];
-//
-//   return (
-//     <Layout>
-//       <h3>Campaign {id}</h3>
-//       <Card.Group items={items} />
-//     </Layout>
-//   );
-// }
