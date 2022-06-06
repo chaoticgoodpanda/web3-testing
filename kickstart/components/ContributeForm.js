@@ -1,43 +1,40 @@
-import React, { Component } from "react";
-import { Form, Input, Message, Button } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Form, Input, Button } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
+import { useRouter } from "next/router";
 
-class ContributeForm extends Component {
-  state = {
-    value: "",
-  };
+export default function ContributeForm(props) {
+  const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  onSubmit = async (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
-    const campaign = Campaign(this.props.address);
-
+    const campaign = Campaign(props.address);
     try {
       const accounts = await web3.eth.getAccounts();
       await campaign.methods.contribute().send({
         from: accounts[0],
-        value: web3.utils.toWei(this.state.value, "ether"),
+        value: web3.utils.toWei(value, "ether"),
       });
+      await router.replace(`/campaigns/${props.address}`);
     } catch (err) {}
   };
 
-  render() {
-    return (
-      <Form onSubmit={this.onSubmit}>
-        <Form.Field>
-          <label>Amount to Contribute</label>
-          <Input
-            value={this.state.value}
-            onChange={(event) => this.setState({ value: event.target.value })}
-            label="ether"
-            labelPosition="right"
-          />
-        </Form.Field>
-        <Button primary>Contribute!</Button>
-      </Form>
-    );
-  }
+  return (
+    <Form onSubmit={onSubmit}>
+      <Form.Field>
+        <label>Amount to Contribute</label>
+        <Input
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          label="ether"
+          labelPosition="right"
+        />
+      </Form.Field>
+      <Button primary>Contribute!</Button>
+    </Form>
+  );
 }
-
-export default ContributeForm;
